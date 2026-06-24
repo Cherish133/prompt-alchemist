@@ -1,0 +1,33 @@
+{
+  "id": "prompt-alchemist-1.0.2",
+  "name": "四元蒸馏框架",
+  "version": "1.0.2",
+  "author": "花叔",
+  "ownerId": "509800",
+  "description": "蒸馏四位顶级提示词工程师方法论，融合为四元蒸馏框架，自动优化用户提示词",
+  "tags": ["提示词优化", "Prompt工程", "四元蒸馏", "AI写作"],
+  "category": "productivity",
+  "license": "MIT",
+  "minOpenClawVersion": "0.2.0",
+  "entry": "SKILL.md",
+  "created_at": "2026-06-16",
+  "updated_at": "2026-06-16",
+  "changelog": [
+    {
+      "version": "1.0.2",
+      "date": "2026-06-16",
+      "changes": [
+        "修正 CO-STAR 归属：注明 Shi Fang 原创 + 涂津豪推广",
+        "压缩步骤从'原则'升级为'操作清单表格'，增加步骤⑥'约束保全'",
+        "结构 Checklist 改为分级制（3必选+按需），解除与分级输出的矛盾",
+        "输出格式分级规则提升到 SKILL.md 主体",
+        "诊断报告增加'原始质量评级'（1-5星）",
+        "变更说明表格改为动态行（只列实际变更维度）",
+        "增加'多轮交互指引'章节",
+        "删除不存在的文件引用",
+        "修复 examples.md 示例一的 XML 标签嵌套问题",
+        "增加反模式对照表和自检清单到 examples.md"
+      ]
+    }
+  ]
+}
