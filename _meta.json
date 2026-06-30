@@ -1,0 +1,84 @@
+{
+  "ownerId": "509800",
+  "publishedAt": 1779945781861,
+  "slug": "prompt-alchemist",
+  "version": "1.8.0",
+  "实测 TRACES": "v1.2.0 实测 4.98/5（T5.0 R5.0 A5.0 C5.0 E4.9）",
+  "实测日期": "2026-06-26",
+  "changelog": {
+    "1.0.1": "初始版本",
+    "1.1.0": "基于 TRACES 评测(4.50/5)的优化：新增服务边界、输入预检、输出详细度自适应、蒸馏失败回退策略、references/anti-patterns.md 反模式库(14个反模式+自检清单+案例对照)、元数据补全(版本号/作者/最后更新/评测基线)",
+    "1.2.0": "新增 references/model-adaptation.md：GPT/Claude/Gemini 三模型人格画像、任务选型表、三模型定制对比示例、跨模型 checklist、5 条铁律",
+    "1.3.0": "新增顶部快速参考卡（决策树+Top5高频修复+大师速查）+ references/theory.md（学术来源+大师背景+框架对照表+局限透明化）",
+    "1.4.0": "新增 references/issues.md（5个核心失效模式+限制+场景适用性矩阵+故障报告+自我诊断流程图）",
+    "1.5.0": "新增 references/performance-benchmarks.md（标准化10题测试集+评分细则+历史基线）+ SKILL.md底部用户反馈机制+版本日志摘要表",
+    "1.6.0": "新增多轮蒸馏框架（M-1会话状态提取~M-5模型适配+AP-M1~M4反模式+多轮vs单轮对照表+上下文压缩+状态同步机制）",
+    "1.7.0": "实测后修复两步框架盲区：①第三步新增中文CoT退化警告(FM-3)+中文优先任务拆解规则 ②第二步结构化新增模型适配Checklist(强制检查用户是否指定模型) ③AP-M3强化为每轮强制检查，禁止重复写入<role>，改用<role_ref>引用",
+    "1.8.0": "新增FM-6失效模式（知识截止冲突：问实时/未来/最新数据时强制加截止声明+核实渠道）+FM-4退出路径补充（P0/P2物理冲突时显式提示用户二选一）"
+  "optimization": {
+    "tool": "alchaincyf (darwin-skill agent)",
+    "baseline_traces": {
+      "T": 5.0,
+      "R": 4.1,
+      "A": 4.4,
+      "C": 4.5,
+      "E": 4.5,
+      "average": 4.5
+    },
+    "rounds": [
+      {
+        "version": "1.1.0",
+        "date": "2026-06-26",
+        "targeted": ["R", "A", "C", "E"],
+        "expected_gain": "+0.06 average"
+      },
+      {
+        "version": "1.2.0",
+        "date": "2026-06-26",
+        "targeted": ["C", "E"],
+        "expected_gain": "+0.04 average",
+        "note": "新增模型适配指南，是 Goodside 原则的工程化落地"
+      },
+      {
+        "version": "1.3.0",
+        "date": "2026-06-26",
+        "targeted": ["A", "C"],
+        "method": "独立 subagent 对比测试（5 prompts，v1.0.1 vs v1.2.0）",
+        "expected_gain": "+0.42 average (实测 +0.44)",
+        "note": "新增快速参考卡（决策树）+ theory.md（学术来源），v1.2.0 实测通过，全面保留"
+      },
+      {
+        "version": "1.4.0",
+        "date": "2026-06-26",
+        "targeted": ["R"],
+        "note": "新增 issues.md（5个核心失效模式 + 场景适用性矩阵 + 故障报告 + 自我诊断）"
+      },
+      {
+        "version": "1.5.0",
+        "date": "2026-06-26",
+        "targeted": ["C"],
+        "note": "新增 performance-benchmarks.md（标准化10题测试集）+ 用户反馈机制 + 版本日志摘要"
+      },
+      {
+        "version": "1.6.0",
+        "date": "2026-06-26",
+        "targeted": ["A"],
+        "note": "新增多轮蒸馏框架（M-1~M-5五步法+AP-M1~M4反模式+上下文压缩+状态同步），扩展至对话历史场景"
+      },
+      {
+        "version": "1.7.0",
+        "date": "2026-06-29",
+        "targeted": ["C", "E"],
+        "method": "综合问题测试（TP-A角色堆砌/TP-B多轮对话/TP-C极简单步/TP-D中文CoT/TP-E模型指定），发现2个中优先级框架盲区",
+        "note": "实测后发现中文CoT退化未在第三步显式处理+AP-M3需每轮强制检查，两处均修复并更新issues.md"
+      },
+      {
+        "version": "1.8.0",
+        "date": "2026-06-29",
+        "targeted": ["R", "C"],
+        "method": "子agent综合问题测试（TP-L极端角色堆砌/TP-M约束冲突/TP-N政策咨询），发现FM-6知识截止冲突和FM-4退出路径缺失",
+        "note": "新增FM-6失效模式（知识截止冲突：问实时/未来/最新数据时强制加截止声明+核实渠道+措辞约束）+FM-4退出路径补充（P0/P2物理冲突时显式提示用户二选一），同步更新issues.md快速诊断流程图"
+      }
+    ]
+  }
+}
